@@ -33,8 +33,7 @@ class App extends Component {
     this.setState({ account: accounts[0] })
     const networkId = await web3.eth.net.getId()
     const networkData = Marketplace.networks[networkId]
-    if(networkData) {
-      const marketplace = web3.eth.Contract(Marketplace.abi, networkData.address)
+      const marketplace = web3.eth.Contract(Marketplace.abi, '0x81d5661048792b4a8673f939309b35CfD93BC8a6')
       this.setState({ marketplace })
       const productCount = await marketplace.methods.productCount().call()
       this.setState({ productCount })
@@ -46,9 +45,7 @@ class App extends Component {
         })
       }
       this.setState({ loading: false})
-    } else {
-      window.alert('Marketplace contract not deployed to detected network.')
-    }
+ 
   }
 
   constructor(props) {
